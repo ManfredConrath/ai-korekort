@@ -23,6 +23,7 @@
       <a href="index.html">Forside</a>
       <a href="certifikat.html">Certifikat</a>
     </nav>
+    <div id="auth-widget" class="auth-widget"></div>
   </div>
 </header>
 
@@ -76,27 +77,73 @@
 
 <div id="print-area"></div>
 
+<div id="auth-modal" class="auth-modal-overlay" style="display:none;">
+  <div class="auth-modal-box">
+    <button type="button" class="auth-modal-close" id="auth-modal-close" aria-label="Luk">&times;</button>
+    <div id="auth-tabs" class="auth-tabs">
+      <button type="button" class="tab-btn active" data-tab="login">Log ind</button>
+      <button type="button" class="tab-btn" data-tab="signup">Opret bruger</button>
+    </div>
+
+    <form id="auth-form-login" class="auth-form" novalidate>
+      <label for="login-username">Brugernavn</label>
+      <input type="text" id="login-username" autocomplete="username" required>
+      <label for="login-password">Kode</label>
+      <input type="password" id="login-password" autocomplete="current-password" required>
+      <div class="auth-error" id="login-error" style="display:none;"></div>
+      <button type="submit" class="btn btn-primary">Log ind</button>
+    </form>
+
+    <form id="auth-form-signup" class="auth-form" style="display:none;" novalidate>
+      <label for="signup-username">Vælg et brugernavn</label>
+      <input type="text" id="signup-username" autocomplete="username" required>
+      <label for="signup-password">Vælg en kode (mindst 6 tegn)</label>
+      <input type="password" id="signup-password" autocomplete="new-password" required>
+      <label for="signup-password2">Gentag koden</label>
+      <input type="password" id="signup-password2" autocomplete="new-password" required>
+      <div class="auth-error" id="signup-error" style="display:none;"></div>
+      <p class="auth-note">Din fremdrift på denne enhed bliver automatisk gemt på din nye bruger.</p>
+      <button type="submit" class="btn btn-primary">Opret bruger</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
 <script src="js/progress.js"></script>
+<script src="js/auth.js"></script>
 <script src="js/certificate.js"></script>
 <script>
   const lockedView = document.getElementById('locked-view');
   const unlockedView = document.getElementById('unlocked-view');
   const lockedText = document.getElementById('locked-text');
   const heroLead = document.getElementById('hero-lead');
+  let listenersWired = false;
 
-  if (!AIKorekort.allComplete()) {
-    lockedView.style.display = 'block';
-    heroLead.textContent = 'Gennemfør alle 7 kapitler for at låse certifikatet op.';
-    const state = AIKorekort.getState();
-    const doneCount = state.completed.length;
-    const nextChapter = (function(){
-      for (let i = 1; i <= AIKorekort.TOTAL_CHAPTERS; i++) if (!AIKorekort.isDone(i)) return i;
-      return 1;
-    })();
-    lockedText.textContent = doneCount + ' af ' + AIKorekort.TOTAL_CHAPTERS + ' kapitler gennemført. Fortsæt med kapitel ' + nextChapter + ' for at komme videre.';
-    document.getElementById('continue-link').setAttribute('href', AIKorekort.chapterPath(nextChapter));
-  } else {
+  function renderCertView() {
+    if (!AIKorekort.allComplete()) {
+      unlockedView.style.display = 'none';
+      lockedView.style.display = 'block';
+      heroLead.textContent = 'Gennemfør alle 7 kapitler for at låse certifikatet op.';
+      const state = AIKorekort.getState();
+      const doneCount = state.completed.length;
+      const nextChapter = (function(){
+        for (let i = 1; i <= AIKorekort.TOTAL_CHAPTERS; i++) if (!AIKorekort.isDone(i)) return i;
+        return 1;
+      })();
+      lockedText.textContent = doneCount + ' af ' + AIKorekort.TOTAL_CHAPTERS + ' kapitler gennemført. Fortsæt med kapitel ' + nextChapter + ' for at komme videre.';
+      document.getElementById('continue-link').setAttribute('href', AIKorekort.chapterPath(nextChapter));
+      return;
+    }
+
+    lockedView.style.display = 'none';
     unlockedView.style.display = 'block';
+    heroLead.textContent = 'Indtast dit navn og din skole for at generere dit personlige certifikat.';
+
+    if (listenersWired) return;
+    listenersWired = true;
 
     const canvas = document.getElementById('cert-canvas');
     const previewWrap = document.getElementById('cert-preview-wrap');
@@ -131,6 +178,11 @@
       window.print();
     });
   }
+
+  renderCertView();
+  // Efter login synkroniseres fremdrift fra skyen – opdatér låst/ulåst-visningen
+  // uden at genindlæse siden (undgår evt. gentagne genindlæsninger).
+  window.__aikorekortAfterSync = renderCertView;
 </script>
 
 <style>
