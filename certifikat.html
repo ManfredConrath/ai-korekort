@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dit certifikat | AI-kørekort</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap-wide header-inner">
+    <div class="brand">
+      <img src="assets/puc-logo.jpg" alt="PUC Aabenraa logo" class="brand-logo">
+      <div class="brand-text">
+        <div class="title">AI-kørekort</div>
+        <div class="subtitle">for undervisere i Aabenraa Kommune</div>
+      </div>
+    </div>
+    <nav class="header-nav">
+      <a href="index.html">Forside</a>
+      <a href="certifikat.html">Certifikat</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="padding-bottom:20px;">
+  <div class="wrap">
+    <h1>🎓 Dit AI-kørekort-certifikat</h1>
+    <p class="lead" id="hero-lead">Indtast dit navn og din skole for at generere dit personlige certifikat.</p>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <div id="locked-view" style="display:none;">
+    <div class="locked-banner">
+      <h2>Certifikatet er endnu ikke låst op</h2>
+      <p id="locked-text" style="color:var(--ink-soft);">Du skal gennemføre alle 7 kapitler, før du kan hente dit certifikat.</p>
+      <a class="btn btn-primary" id="continue-link" href="index.html" style="margin-top:10px;">Fortsæt hvor du slap →</a>
+    </div>
+  </div>
+
+  <div id="unlocked-view" style="display:none;">
+    <div class="cert-form">
+      <p style="margin:0 0 4px; font-weight:700; color:var(--green-ish, #2f7d3a);">✓ Alle 7 kapitler er gennemført – tillykke!</p>
+      <label for="navn-input">Dit fulde navn</label>
+      <input type="text" id="navn-input" placeholder="Fx Anna Andersen" autocomplete="name">
+
+      <label for="skole-input">Din skole</label>
+      <input type="text" id="skole-input" placeholder="Fx Aabenraa Skole" autocomplete="organization">
+
+      <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
+        <button class="btn btn-primary" id="generate-btn" type="button">Generér certifikat</button>
+      </div>
+    </div>
+
+    <div id="cert-preview-wrap" style="display:none;">
+      <canvas id="cert-canvas"></canvas>
+      <div class="cert-actions">
+        <button class="btn btn-gold" id="download-btn" type="button">⬇ Download som billede (PNG)</button>
+        <button class="btn btn-ghost" id="print-btn" type="button">🖨 Udskriv / gem som PDF</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>AI-kørekort for undervisere · <a href="https://pucaabenraa.dk" target="_blank" rel="noopener">PUC Aabenraa</a> · Aabenraa Kommune</div>
+  </div>
+</footer>
+
+<div id="print-area"></div>
+
+<script src="js/progress.js"></script>
+<script src="js/certificate.js"></script>
+<script>
+  const lockedView = document.getElementById('locked-view');
+  const unlockedView = document.getElementById('unlocked-view');
+  const lockedText = document.getElementById('locked-text');
+  const heroLead = document.getElementById('hero-lead');
+
+  if (!AIKorekort.allComplete()) {
+    lockedView.style.display = 'block';
+    heroLead.textContent = 'Gennemfør alle 7 kapitler for at låse certifikatet op.';
+    const state = AIKorekort.getState();
+    const doneCount = state.completed.length;
+    const nextChapter = (function(){
+      for (let i = 1; i <= AIKorekort.TOTAL_CHAPTERS; i++) if (!AIKorekort.isDone(i)) return i;
+      return 1;
+    })();
+    lockedText.textContent = doneCount + ' af ' + AIKorekort.TOTAL_CHAPTERS + ' kapitler gennemført. Fortsæt med kapitel ' + nextChapter + ' for at komme videre.';
+    document.getElementById('continue-link').setAttribute('href', AIKorekort.chapterPath(nextChapter));
+  } else {
+    unlockedView.style.display = 'block';
+
+    const canvas = document.getElementById('cert-canvas');
+    const previewWrap = document.getElementById('cert-preview-wrap');
+    const navnInput = document.getElementById('navn-input');
+    const skoleInput = document.getElementById('skole-input');
+    let logoImg = null;
+
+    AICertificate.loadLogo('assets/puc-logo.jpg').then(function (img) { logoImg = img; });
+
+    document.getElementById('generate-btn').addEventListener('click', function () {
+      const navn = navnInput.value.trim();
+      const skole = skoleInput.value.trim();
+      if (!navn || !skole) {
+        alert('Udfyld venligst både navn og skole, før du genererer certifikatet.');
+        return;
+      }
+      AICertificate.draw(canvas, { navn: navn, skole: skole, logoImg: logoImg });
+      previewWrap.style.display = 'block';
+      previewWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.getElementById('download-btn').addEventListener('click', function () {
+      const navn = navnInput.value.trim() || 'undervisers';
+      const filename = 'AI-korekort-certifikat-' + navn.replace(/\s+/g, '_') + '.png';
+      AICertificate.downloadPNG(canvas, filename);
+    });
+
+    document.getElementById('print-btn').addEventListener('click', function () {
+      const dataUrl = canvas.toDataURL('image/png');
+      const printArea = document.getElementById('print-area');
+      printArea.innerHTML = '<img src="' + dataUrl + '" style="width:100%;">';
+      window.print();
+    });
+  }
+</script>
+
+<style>
+  #print-area { display: none; }
+  @media print {
+    body * { visibility: hidden; }
+    #print-area, #print-area * { visibility: visible; }
+    #print-area {
+      display: block;
+      position: fixed;
+      inset: 0;
+      margin: 0;
+      padding: 0;
+    }
+  }
+</style>
+
+</body>
+</html>

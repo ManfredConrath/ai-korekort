@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-kørekort for undervisere | PUC Aabenraa</title>
+<meta name="description" content="AI-kørekort for undervisere i Aabenraa Kommune – gennemgå 7 kapitler om kunstig intelligens i undervisningen og få dit certifikat.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap-wide header-inner">
+    <div class="brand">
+      <img src="assets/puc-logo.jpg" alt="PUC Aabenraa logo" class="brand-logo">
+      <div class="brand-text">
+        <div class="title">AI-kørekort</div>
+        <div class="subtitle">for undervisere i Aabenraa Kommune</div>
+      </div>
+    </div>
+    <nav class="header-nav">
+      <a href="index.html">Forside</a>
+      <a href="certifikat.html">Certifikat</a>
+      <span class="pill">🚗 PUC Aabenraa</span>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="badge-row">
+      <span class="badge">7 kapitler</span>
+      <span class="badge">Ca. 15-20 min. pr. kapitel</span>
+      <span class="badge">Afsluttes med certifikat</span>
+    </div>
+    <h1>Velkommen til dit AI-kørekort</h1>
+    <p class="lead">
+      Dette er et selvstudieforløb til dig som underviser i Aabenraa Kommune, der ønsker et solidt
+      og praksisnært fundament for at bruge kunstig intelligens i din undervisning og forberedelse.
+      Du arbejder dig igennem 7 kapitler i rækkefølge – hvert kapitel indeholder vidensformidling
+      og en kort reflektionsøvelse. Når du har afkrydset øvelsen, låses næste kapitel op.
+      Når alle 7 er gennemført, kan du hente dit personlige AI-kørekort-certifikat.
+    </p>
+    <div id="locked-notice" class="locked-banner" style="display:none; max-width:none; margin:0 0 24px;"></div>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <div class="progress-summary">
+    <div class="track"><div class="fill" id="progress-fill"></div></div>
+    <div class="count" id="progress-count">0 af 7 kapitler gennemført</div>
+  </div>
+
+  <div class="cert-card" id="cert-card">
+    <div>
+      <h3>🎓 Dit AI-kørekort-certifikat</h3>
+      <p class="cert-status">Gennemfør alle 7 kapitler for at låse certifikatet op.</p>
+    </div>
+    <a class="btn btn-gold" href="certifikat.html">Se certifikat-status</a>
+  </div>
+
+  <h2 style="color:var(--blue-darker); margin:38px 0 4px; font-size:1.3rem;">Kapitlerne</h2>
+  <p style="color:var(--ink-soft); margin-top:0;">Gennemføres i rækkefølge – klik på et ulåst kapitel for at starte eller fortsætte.</p>
+
+  <div class="chapter-grid" id="chapter-grid"></div>
+
+  <div style="background:#fff; border:1px solid var(--border); border-radius:14px; padding:22px 24px; margin-bottom:50px;">
+    <h3 style="margin-top:0; color:var(--blue-darker);">Sådan fungerer det</h3>
+    <ol style="color:var(--ink-soft); padding-left:20px; margin-bottom:0;">
+      <li>Åbn kapitel 1 og læs vidensformidlingen.</li>
+      <li>Lav den korte reflektionsøvelse for enden af kapitlet.</li>
+      <li>Sæt flueben ved "Jeg har gennemført kapitlet" og klik "Marker som gennemført".</li>
+      <li>Næste kapitel låses automatisk op – din fremdrift gemmes i din browser.</li>
+      <li>Når alle 7 kapitler er grønne, kan du hente dit certifikat med navn og skole.</li>
+    </ol>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>AI-kørekort for undervisere · <a href="https://pucaabenraa.dk" target="_blank" rel="noopener">PUC Aabenraa</a> · Aabenraa Kommune</div>
+    <div><button id="reset-btn" class="btn btn-ghost btn-sm" type="button">Nulstil min fremdrift</button></div>
+  </div>
+</footer>
+
+<script src="js/progress.js"></script>
+<script>
+  AIKorekort.renderIndex({
+    gridEl: document.getElementById("chapter-grid"),
+    fillEl: document.getElementById("progress-fill"),
+    countEl: document.getElementById("progress-count"),
+    certCardEl: document.getElementById("cert-card"),
+    lockedNoticeEl: document.getElementById("locked-notice"),
+  });
+
+  document.getElementById("reset-btn").addEventListener("click", function () {
+    if (confirm("Er du sikker på, at du vil nulstille din fremdrift? Dette kan ikke fortrydes.")) {
+      AIKorekort.resetProgress();
+      location.reload();
+    }
+  });
+</script>
+</body>
+</html>
