@@ -26,7 +26,7 @@
     ctx.closePath();
   }
 
-  function draw(canvas, { navn, skole, logoImg }) {
+  function draw(canvas, { navn, logoImg }) {
     canvas.width = W;
     canvas.height = H;
     const ctx = canvas.getContext("2d");
@@ -116,12 +116,11 @@
     ctx.lineTo(W / 2 + nameWidth / 2, y + 18);
     ctx.stroke();
 
-    // From school
+    // Completion statement
     y += 70;
     ctx.fillStyle = "#1c2733";
     ctx.font = "500 28px Inter, Arial, sans-serif";
-    let displaySchool = skole && skole.trim() ? skole.trim() : "___________________________";
-    ctx.fillText("har gennemført alle 7 kapitler af AI-kørekortet ved " + displaySchool, W / 2, y);
+    ctx.fillText("har gennemført alle 7 kapitler af AI-kørekortet", W / 2, y);
 
     // Body text
     y += 56;
