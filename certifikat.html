@@ -46,7 +46,7 @@
 
   <div id="unlocked-view" style="display:none;">
     <div class="cert-form">
-      <p style="margin:0 0 4px; font-weight:700; color:var(--green-ish, #2f7d3a);">✓ Alle 7 kapitler er gennemført – tillykke!</p>
+      <p style="margin:0 0 4px; font-weight:700; color:var(--green-ish, #2f7d3a);">✓ Alle 7 kapitler er gennemført, tillykke!</p>
       <label for="navn-input">Dit fulde navn</label>
       <input type="text" id="navn-input" placeholder="Fx Anna Andersen" autocomplete="name">
 
@@ -175,7 +175,7 @@
   }
 
   renderCertView();
-  // Efter login synkroniseres fremdrift fra skyen – opdatér låst/ulåst-visningen
+  // Efter login synkroniseres fremdrift fra skyen: opdatér låst/ulåst-visningen
   // uden at genindlæse siden (undgår evt. gentagne genindlæsninger).
   window.__aikorekortAfterSync = renderCertView;
 </script>

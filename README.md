@@ -5,11 +5,11 @@ undervisningen. Baseret på PUC Aabenraas kursusmateriale "Undervisere grundkurs
 "Undervisere kørekort".
 
 ## Sådan er det bygget
-- Rent HTML/CSS/JS – ingen build-trin, ingen server nødvendig.
+- Rent HTML/CSS/JS, ingen build-trin, ingen server nødvendig.
 - Fremdrift (gennemførte kapitler + reflektionsnoter) gemmes altid i besøgendes egen browser
-  (`localStorage`) – sitet virker fuldt ud uden login.
+  (`localStorage`), sitet virker fuldt ud uden login.
 - Valgfrit login (brugernavn + kode) via Firebase Authentication + Cloud Firestore gør det
-  muligt at fortsætte kørekortet på en anden enhed/browser – fremdriften synkroniseres til
+  muligt at fortsætte kørekortet på en anden enhed/browser, fremdriften synkroniseres til
   skyen og hentes/merges automatisk ved login. Er Firebase ikke tilgængeligt (fx blokeret
   netværk), falder sitet automatisk tilbage til ren lokal tilstand uden fejl.
 - Kapitler låses op i rækkefølge; certifikatet genereres som PNG direkte i browseren via
