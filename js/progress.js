@@ -1,5 +1,5 @@
 /* ============================================================
-   AI-kørekort – fremdrift, låsning og navigation
+   AI-kørekort: fremdrift, låsning og navigation
    Gemmes lokalt i browseren (localStorage) pr. enhed/browser.
    ============================================================ */
 
@@ -8,13 +8,13 @@
   const TOTAL_CHAPTERS = 7;
 
   const CHAPTERS = [
-    { n: 1, title: "Teoretisk grundlag af AI", desc: "Hvad er AI, generativ AI og sprogmodeller – og hvordan opstår svarene?" },
+    { n: 1, title: "Teoretisk grundlag af AI", desc: "Hvad er AI, generativ AI og sprogmodeller, og hvordan opstår svarene?" },
     { n: 2, title: "Prompt engineering", desc: "Sådan skriver du prompts, der giver brugbare svar til din undervisning." },
-    { n: 3, title: "AI modeller", desc: "Overblik over ChatGPT, Claude, Perplexity, SkoleGPT m.fl. – og hvornår du må bruge hvad." },
+    { n: 3, title: "AI modeller", desc: "Overblik over ChatGPT, Claude, Perplexity, SkoleGPT m.fl., og hvornår du må bruge hvad." },
     { n: 4, title: "AI i praksis", desc: "Videnstigen, faldgruber og Aabenraa Kommunes rammer for brug af AI i skolen." },
     { n: 5, title: "Undervisning med AI", desc: "Konkrete eksempler, kildekritik og AI-fodspor i elevernes opgaver." },
-    { n: 6, title: "Anbefalinger til egen praksis", desc: "Sådan bruges AI ansvarligt – og hvordan I deler erfaringer som kolleger." },
-    { n: 7, title: "Inspiration", desc: "Værktøjer, bøger og næste skridt – din bro fra viden til handling." },
+    { n: 6, title: "Anbefalinger til egen praksis", desc: "Sådan bruges AI ansvarligt, og hvordan I deler erfaringer som kolleger." },
+    { n: 7, title: "Inspiration", desc: "Værktøjer, bøger og næste skridt, din bro fra viden til handling." },
   ];
 
   function getState() {
@@ -169,7 +169,7 @@
     if (certCard) {
       const link = certCard.querySelector("a.btn");
       if (allComplete()) {
-        certCard.querySelector(".cert-status") && (certCard.querySelector(".cert-status").textContent = "Alle 7 kapitler er gennemført – dit certifikat venter!");
+        certCard.querySelector(".cert-status") && (certCard.querySelector(".cert-status").textContent = "Alle 7 kapitler er gennemført, dit certifikat venter!");
         if (link) { link.setAttribute("href", rootPath("certifikat.html")); link.textContent = "Hent dit certifikat →"; }
       } else {
         certCard.querySelector(".cert-status") && (certCard.querySelector(".cert-status").textContent = (TOTAL_CHAPTERS - doneCount) + " kapitler tilbage, før certifikatet låses op.");
@@ -183,7 +183,7 @@
     if (lockedParam && opts.lockedNoticeEl) {
       opts.lockedNoticeEl.style.display = "block";
       opts.lockedNoticeEl.textContent =
-        "Kapitel " + lockedParam + " er endnu ikke låst op. Gennemfør kapitlerne i rækkefølge – start hvor din grønne markering slutter.";
+        "Kapitel " + lockedParam + " er endnu ikke låst op. Gennemfør kapitlerne i rækkefølge, start hvor din grønne markering slutter.";
     }
   }
 

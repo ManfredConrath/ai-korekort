@@ -1,5 +1,5 @@
 /* ============================================================
-   AI-kørekort – certifikat-generering (HTML5 canvas)
+   AI-kørekort: certifikat-generering (HTML5 canvas)
    ============================================================ */
 
 (function (global) {

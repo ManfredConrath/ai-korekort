@@ -1,8 +1,8 @@
 /* ============================================================
-   AI-kørekort – Firebase-konfiguration
+   AI-kørekort: Firebase-konfiguration
    Projekt: ai-korekort (Firebase Spark/gratis plan)
    Disse værdier er offentlige projekt-identifikatorer, ikke
-   hemmeligheder – adgangen styres af Firestore Security Rules,
+   hemmeligheder, adgangen styres af Firestore Security Rules,
    ikke af at skjule denne fil. Se js/auth.js.
    ============================================================ */
 
@@ -16,7 +16,7 @@ const firebaseConfig = {
 };
 
 // Hvis Firebase-CDN-scripts blev blokeret eller ikke kunne hentes (fx pga.
-// offline eller netværksrestriktioner), skal resten af sitet stadig virke –
+// offline eller netværksrestriktioner), skal resten af sitet stadig virke,
 // auth.js opdager selv at "firebase" mangler og falder tilbage til
 // lokal-kun-tilstand. Se auth.js.
 if (typeof firebase !== "undefined") {

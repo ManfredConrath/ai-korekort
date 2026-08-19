@@ -1,5 +1,5 @@
 /* ============================================================
-   AI-kørekort – brugerlogin og synkronisering på tværs af enheder
+   AI-kørekort: brugerlogin og synkronisering på tværs af enheder
    Bygger oven på Firebase Authentication (brugernavn+kode, gemt som
    en intern "@ai-korekort.local"-mail) og Cloud Firestore (fremdrift).
    Er login IKKE tilgængeligt (fx script blokeret), fungerer sitet
@@ -8,10 +8,10 @@
 
 (function (global) {
   // Hvis Firebase-scripts ikke kunne indlæses (fx offline, ad-blocker eller
-  // netværksrestriktion), skal sitet fortsætte med at virke som før – bare
+  // netværksrestriktion), skal sitet fortsætte med at virke som før, bare
   // uden login/cloud-sync. AIAuth.available afspejler dette til UI-koden.
   if (typeof firebase === "undefined") {
-    console.warn("AI-kørekort: Firebase kunne ikke indlæses – login er ikke tilgængeligt. Fremdrift gemmes lokalt som før.");
+    console.warn("AI-kørekort: Firebase kunne ikke indlæses. Login er ikke tilgængeligt. Fremdrift gemmes lokalt som før.");
     global.AIAuth = {
       available: false,
       signUp: function () { return Promise.reject({ message: "Login er ikke tilgængeligt lige nu." }); },
