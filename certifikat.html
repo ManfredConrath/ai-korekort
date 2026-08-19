@@ -30,7 +30,7 @@
 <section class="hero" style="padding-bottom:20px;">
   <div class="wrap">
     <h1>🎓 Dit AI-kørekort-certifikat</h1>
-    <p class="lead" id="hero-lead">Indtast dit navn og din skole for at generere dit personlige certifikat.</p>
+    <p class="lead" id="hero-lead">Indtast dit navn for at generere dit personlige certifikat.</p>
   </div>
 </section>
 
@@ -49,9 +49,6 @@
       <p style="margin:0 0 4px; font-weight:700; color:var(--green-ish, #2f7d3a);">✓ Alle 7 kapitler er gennemført – tillykke!</p>
       <label for="navn-input">Dit fulde navn</label>
       <input type="text" id="navn-input" placeholder="Fx Anna Andersen" autocomplete="name">
-
-      <label for="skole-input">Din skole</label>
-      <input type="text" id="skole-input" placeholder="Fx Aabenraa Skole" autocomplete="organization">
 
       <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
         <button class="btn btn-primary" id="generate-btn" type="button">Generér certifikat</button>
@@ -140,7 +137,7 @@
 
     lockedView.style.display = 'none';
     unlockedView.style.display = 'block';
-    heroLead.textContent = 'Indtast dit navn og din skole for at generere dit personlige certifikat.';
+    heroLead.textContent = 'Indtast dit navn for at generere dit personlige certifikat.';
 
     if (listenersWired) return;
     listenersWired = true;
@@ -148,19 +145,17 @@
     const canvas = document.getElementById('cert-canvas');
     const previewWrap = document.getElementById('cert-preview-wrap');
     const navnInput = document.getElementById('navn-input');
-    const skoleInput = document.getElementById('skole-input');
     let logoImg = null;
 
     AICertificate.loadLogo('assets/puc-logo.jpg').then(function (img) { logoImg = img; });
 
     document.getElementById('generate-btn').addEventListener('click', function () {
       const navn = navnInput.value.trim();
-      const skole = skoleInput.value.trim();
-      if (!navn || !skole) {
-        alert('Udfyld venligst både navn og skole, før du genererer certifikatet.');
+      if (!navn) {
+        alert('Udfyld venligst dit navn, før du genererer certifikatet.');
         return;
       }
-      AICertificate.draw(canvas, { navn: navn, skole: skole, logoImg: logoImg });
+      AICertificate.draw(canvas, { navn: navn, logoImg: logoImg });
       previewWrap.style.display = 'block';
       previewWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });

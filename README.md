@@ -18,7 +18,7 @@ undervisningen. Baseret på PUC Aabenraas kursusmateriale "Undervisere grundkurs
 ## Struktur
 ```
 index.html               Forside med kapiteloversigt og fremdrift
-certifikat.html          Certifikat-generator (navn + skole)
+certifikat.html          Certifikat-generator (navn)
 kapitler/kapitel1-7.html  De 7 kapitler
 css/style.css             Designsystem (inkl. login-modal)
 js/progress.js            Fremdrift/lås-logik (localStorage)
