@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kapitel 3: AI modeller | AI-kørekort</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap-wide header-inner">
+    <div class="brand">
+      <img src="../assets/puc-logo.jpg" alt="PUC Aabenraa logo" class="brand-logo">
+      <div class="brand-text">
+        <div class="title">AI-kørekort</div>
+        <div class="subtitle">for undervisere i Aabenraa Kommune</div>
+      </div>
+    </div>
+    <nav class="header-nav">
+      <a href="../index.html">Forside</a>
+      <a href="../certifikat.html">Certifikat</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap"><div class="stepper" id="stepper"></div></div>
+
+<section class="chapter-header">
+  <div class="wrap">
+    <div class="kicker">Kapitel 3 af 7</div>
+    <h1>AI modeller – hvem taler vi med?</h1>
+    <div class="purpose-box">
+      Forskellige chatbots og modeller er optimeret til forskellige styrker, og resultatet afhænger
+      af, hvem du "taler med". Dette kapitel giver dig et overblik over de mest udbredte værktøjer,
+      hvordan valget påvirker svarenes stil, forklaringsniveau og kildebrug – og en klar regel for,
+      hvornår du må bruge hvilket værktøj sammen med eleverne.
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="wrap">
+
+    <h2>De mest udbredte værktøjer</h2>
+    <ul>
+      <li><strong>ChatGPT</strong> – bredt anvendelig til idégenerering, didaktisk planlægning, differentiering og sparring.</li>
+      <li><strong>Claude</strong> – stort kontekstvindue (op til 200.000 tokens), "Artifacts" til interaktive materialer, stærk til dansk sprog og lange, strukturerede tekster.</li>
+      <li><strong>Perplexity</strong> – lægger vægt på kildehenvisninger og faglig præcision; godt til hurtigt overblik med links til kilder.</li>
+      <li><strong>DeepSeek</strong> – hurtige udkast, idéer og alternative formuleringer.</li>
+      <li><strong>Grok</strong> – uformel og til tider satirisk tone; kan bruges til provokerende idéer og kreative vinkler, men kræver ekstra kildekritisk sans.</li>
+      <li><strong>SkoleGPT</strong> – en dansk sprogmodel udviklet af Center for Undervisningsmidler (CFU), som bygger på sprogmodellen gemma3-12b. Den er gratis og en sikker, generativ AI til skolens lærere <strong>og elever</strong>.</li>
+    </ul>
+
+    <div class="fact-box">
+      <div class="fact-label">Vigtig regel</div>
+      <p style="margin:0 0 8px;">
+        Til <strong>undervisningsforberedelse</strong> må du gerne bruge forskellige chatbots samt
+        din arbejdsmail til registrering.
+      </p>
+      <p style="margin:0;">
+        <strong>I undervisningen sammen med eleverne må der KUN bruges chatbots, hvor der er
+        indgået databehandleraftale → SkoleGPT er godkendt til brug sammen med eleverne!</strong>
+      </p>
+    </div>
+
+    <div class="quote-box">
+      "AI kan hjælpe dig med at formulere og strukturere, men du har ansvaret for faglighed,
+      kontekst og faktatjek."
+    </div>
+
+    <h2>Sammenligning – hvad er hvert værktøj bedst til i forberedelsen?</h2>
+    <table class="compare">
+      <thead>
+        <tr><th>Værktøj</th><th>Bedst til</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>ChatGPT</td><td>Idégenerering, didaktisk planlægning, differentiering, sparring</td></tr>
+        <tr><td>Claude</td><td>Lange tekster, strukturering, omskrivning, redaktør af udkast</td></tr>
+        <tr><td>Perplexity</td><td>Hurtigt overblik med kildehenvisninger, aktuelle forklaringer og begreber</td></tr>
+        <tr><td>DeepSeek</td><td>Hurtige udkast, idéer, enkle materialer, alternative formuleringer</td></tr>
+        <tr><td>Grok</td><td>Provokerende idéer, kreative vinkler, uformelle tekster</td></tr>
+        <tr><td>SkoleGPT</td><td>Pædagogisk anvendelse sammen med eleverne</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:0.85rem; color:var(--ink-soft);">
+      Bemærk: funktioner og tilgængelighed for de forskellige værktøjer ændrer sig løbende – brug
+      tabellen som didaktisk beslutningsstøtte, ikke som en facitliste.
+    </p>
+
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="reflection">
+    <h2>🧭 Reflektionsøvelse – kapitel 3</h2>
+    <p class="reflection-goal">Afprøv forskellene mellem sprogmodellerne selv.</p>
+    <ol>
+      <li>Hvilke(n) sprogmodel har du allerede afprøvet? Hvad var formålet?</li>
+      <li>Prøv gerne forskellige sprogmodeller med <strong>samme prompt</strong>.</li>
+      <li>Har du været tilfreds med outputtet – hvorfor / hvorfor ikke?</li>
+    </ol>
+    <label for="reflection-text" style="font-weight:700; display:block; margin-bottom:6px;">Dine noter (valgfrit – gemmes kun i din browser)</label>
+    <textarea id="reflection-text" placeholder="Skriv fx hvilke modeller du testede, og hvad forskellen var på svarene..."></textarea>
+
+    <div class="check-row">
+      <input type="checkbox" id="done-checkbox">
+      <label for="done-checkbox">Jeg har gennemført kapitlets vidensdel og reflektionsøvelsen ovenfor.</label>
+    </div>
+
+    <div class="complete-row">
+      <button class="btn btn-primary" id="complete-btn" type="button" disabled>Marker kapitel 3 som gennemført</button>
+      <span class="saved-note" id="saved-note">✓ Gemt – kapitel 4 er nu låst op</span>
+    </div>
+  </div>
+</section>
+
+<div class="wrap chapter-nav">
+  <a class="btn btn-ghost" href="kapitel2.html">← Kapitel 2</a>
+  <a class="btn btn-primary" id="next-link" href="kapitel4.html" aria-disabled="true">Næste: AI i praksis →</a>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>AI-kørekort for undervisere · <a href="https://pucaabenraa.dk" target="_blank" rel="noopener">PUC Aabenraa</a> · Aabenraa Kommune</div>
+  </div>
+</footer>
+
+<script src="../js/progress.js"></script>
+<script>
+  const CH = 3;
+  AIKorekort.guardChapter(CH);
+  AIKorekort.renderStepper(document.getElementById('stepper'), CH);
+
+  const state = AIKorekort.getState();
+  const textarea = document.getElementById('reflection-text');
+  const checkbox = document.getElementById('done-checkbox');
+  const completeBtn = document.getElementById('complete-btn');
+  const savedNote = document.getElementById('saved-note');
+  const nextLink = document.getElementById('next-link');
+
+  if (state.reflections[CH]) textarea.value = state.reflections[CH];
+  if (AIKorekort.isDone(CH)) {
+    checkbox.checked = true;
+    savedNote.classList.add('show');
+    nextLink.removeAttribute('aria-disabled');
+  }
+
+  function refreshButton() { completeBtn.disabled = !checkbox.checked; }
+  checkbox.addEventListener('change', refreshButton);
+  refreshButton();
+
+  textarea.addEventListener('input', function () {
+    AIKorekort.saveReflectionDraft(CH, textarea.value);
+  });
+
+  completeBtn.addEventListener('click', function () {
+    if (!checkbox.checked) return;
+    AIKorekort.markComplete(CH, textarea.value);
+    savedNote.classList.add('show');
+    nextLink.removeAttribute('aria-disabled');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kapitel 1: Teoretisk grundlag af AI | AI-kørekort</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap-wide header-inner">
+    <div class="brand">
+      <img src="../assets/puc-logo.jpg" alt="PUC Aabenraa logo" class="brand-logo">
+      <div class="brand-text">
+        <div class="title">AI-kørekort</div>
+        <div class="subtitle">for undervisere i Aabenraa Kommune</div>
+      </div>
+    </div>
+    <nav class="header-nav">
+      <a href="../index.html">Forside</a>
+      <a href="../certifikat.html">Certifikat</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap"><div class="stepper" id="stepper"></div></div>
+
+<section class="chapter-header">
+  <div class="wrap">
+    <div class="kicker">Kapitel 1 af 7</div>
+    <h1>Teoretisk grundlag af AI</h1>
+    <div class="purpose-box">
+      I dette kapitel etablerer vi et fælles sprog for, hvad vi mener med AI, generativ AI og
+      sprogmodeller. Du får en enkel forklaring på, hvordan en sprogmodel producerer svar ud fra
+      sandsynligheder i træningsdata, og hvorfor det både kan give stærke formuleringer og samtidig
+      føre til fejl, skævheder og "overbevisende gæt". Formålet er, at du kan vurdere svarenes
+      kvalitet og relevans med professionel dømmekraft, før du bruger dem i undervisning eller
+      forberedelse.
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="wrap">
+
+    <h2>AI er ikke noget nyt</h2>
+    <p>
+      Kunstig intelligens føles nyt, fordi ChatGPT for alvor satte det på dagsordenen i 2022 – men
+      selve forskningsfeltet er over 70 år gammelt. Her er nogle af de vigtigste milepæle:
+    </p>
+    <ul class="timeline">
+      <li><span class="yr">1950</span> Alan Turing introducerer Turing-testen for at afgøre, om en maskine kan tænke.</li>
+      <li><span class="yr">1956</span> Den første Dartmouth-konference afholdes; AI bliver formelt anerkendt som forskningsfelt.</li>
+      <li><span class="yr">1966</span> ELIZA, en tidlig chatbot, udvikles af Joseph Weizenbaum.</li>
+      <li><span class="yr">1980'erne</span> Ekspertsystemer vinder frem i erhvervslivet (fx MYCIN og XCON).</li>
+      <li><span class="yr">1997</span> IBMs Deep Blue slår verdensmester Garry Kasparov i skak.</li>
+      <li><span class="yr">2011</span> IBMs Watson vinder Jeopardy! over menneskelige mestre.</li>
+      <li><span class="yr">2016</span> AlphaGo slår verdensmesteren i Go, Lee Sedol.</li>
+      <li><span class="yr">2022</span> OpenAI udgiver ChatGPT, som revolutionerer AI-drevet samtale.</li>
+      <li><span class="yr">2023</span> AI genererer realistiske billeder og videoer via diffusionsteknikker som Midjourney og Stable Diffusion.</li>
+      <li><span class="yr">2024</span> AI bruges bredt i uddannelse, medicin, industri, og kunstig generel intelligens (AGI) udvikles.</li>
+      <li><span class="yr">2025</span> Canva integreres i Skoletube (magic write, magic design samt AI-billedgenerering).</li>
+    </ul>
+
+    <h2>Udfordringen er tempoet</h2>
+    <p>
+      Det, der gør AI særligt til at forholde sig til, er hastigheden, den udvikler sig med. Ifølge
+      Anders Bæks bog <em>"AI Epoken"</em> (2024) gik der et par tusind år fra ilden blev opfundet,
+      til hjulets gennembrud. Der gik nogle hundrede år fra opfindelsen af trykpressen, til den
+      industrielle revolution begyndte, og lidt over hundrede år fra den industrielle revolution til
+      bilens opfindelse. Herfra accelererer det markant:
+    </p>
+    <div class="fact-box">
+      <div class="fact-label">Tid fra opfindelse til gennembrud</div>
+      <ul>
+        <li><strong>50 år</strong> til transistorens opfindelse</li>
+        <li><strong>20-30 år</strong> til mikrochippen og computerens opfindelse</li>
+        <li><strong>15 år</strong> til internettets opfindelse</li>
+        <li><strong>10 år</strong> til smartphonens opfindelse</li>
+        <li>AI sidder yderst på kurven – "fremtiden ankom før aftalt"</li>
+      </ul>
+    </div>
+
+    <h2>Hvad er AI? – en teknologi</h2>
+    <p>
+      AI, eller kunstig intelligens, handler om at skabe maskiner eller software, der kan udføre
+      opgaver, som normalt kræver menneskelig intelligens. Det inkluderer ting som at tænke, lære,
+      løse problemer, forstå sprog og genkende objekter og mønstre. Forestil dig en smart robot, som
+      kan lære af erfaringer, løse problemer, og endda forstå og tale med dig på samme måde som et
+      menneske.
+    </p>
+    <div class="quote-box">
+      I oldgræsk betyder <em>tekhnē</em> håndværk eller kunnen – AI er derfor en teknologi i samme
+      forstand: et menneskeskabt system, der udvider vores evner.
+    </div>
+    <h3>Eksempler på AI, du allerede kender</h3>
+    <ul>
+      <li><strong>Personlige assistent-apps:</strong> Siri på iPhone og Google Assistant på Android – forstår tale, besvarer spørgsmål og hjælper med opgaver som alarmer eller at finde en restaurant.</li>
+      <li><strong>Anbefalingssystemer:</strong> Når Netflix foreslår film baseret på det, du tidligere har set, eller Amazon anbefaler produkter baseret på dine køb.</li>
+      <li><strong>Selvkørende biler:</strong> Biler som dem fra Tesla, der kan køre og navigere selv uden meget menneskelig indgriben.</li>
+      <li><strong>Chatbots:</strong> Programmer som ChatGPT, der kan føre samtaler, besvare spørgsmål og hjælpe med forskellige opgaver.</li>
+    </ul>
+
+    <h2>Hvad er en sprogmodel?</h2>
+    <p>En sprogmodel som ChatGPT er designet til at:</p>
+    <ol>
+      <li><strong>Generere sammenhængende tekst:</strong> skrive sætninger, afsnit og længere tekster, som virker sammenhængende og meningsfulde.</li>
+      <li><strong>Besvare spørgsmål:</strong> svare baseret på den information, den har lært under træningen.</li>
+      <li><strong>Hjælpe med skriveopgaver:</strong> essays, rapporter, e-mails osv.</li>
+      <li><strong>Skabe samtaler:</strong> deltage i dialog og simulere menneskelig samtale.</li>
+    </ol>
+    <h3>Hvordan virker det?</h3>
+    <ol>
+      <li><strong>Træning på data:</strong> ChatGPT er trænet på en enorm mængde tekstdata fra internettet. Det hjælper modellen med at lære sprogstrukturer, fakta og koncepter.</li>
+      <li><strong>Forudsigelse af næste ord:</strong> Når du stiller et spørgsmål, bruger modellen sandsynligheder for at forudsige, hvad det næste ord i teksten bør være, baseret på det, den har lært.</li>
+      <li><strong>Generering af svar:</strong> Ved at gentage denne proces med at forudsige det næste ord, skaber modellen et komplet svar.</li>
+    </ol>
+    <p><strong>ChatGPT er altså designet til at generere tekst baseret på det, den har lært fra en stor mængde træningsdata</strong> – det er ikke det samme som en opslagsbog, og det er derfor, output altid skal kvalitetssikres.</p>
+
+    <h2>Hvor stort er fænomenet ChatGPT?</h2>
+    <div class="fact-box">
+      <div class="fact-label">ChatGPT i tal</div>
+      <ul>
+        <li>Behandler cirka <strong>2,5 milliarder prompts</strong> om dagen</li>
+        <li>Modtog over <strong>3,1 milliarder besøg</strong> i september 2024</li>
+        <li><strong>+112 %</strong> vækst (2023)</li>
+        <li>Er verdens <strong>11. mest besøgte</strong> hjemmeside – langt foran Bing, Copilot, Gemini, Character.ai, Perplexity og Claude</li>
+        <li>Klarede den amerikanske juraeksamen (Bar Exam) bedre end gennemsnittet af jurastuderende</li>
+        <li>Præsterer på <strong>ph.d.-niveau</strong> i sproglige og logiske tests</li>
+      </ul>
+    </div>
+
+    <h2>AI i klasselokalet</h2>
+    <p>
+      Forskningsartiklen <em>"How People Use ChatGPT"</em> (Chatterji, Cunningham, Deming, Hitzig
+      m.fl., NBER, september 2025) tegner et billede af, hvordan ChatGPT reelt bruges:
+    </p>
+    <ul>
+      <li>ChatGPT bruges mest <strong>uden for arbejdet</strong> (over 70 % af alle beskeder)</li>
+      <li>Fokus på praktisk vejledning, informationssøgning og skrivning</li>
+      <li>Skrivning er den mest udbredte arbejdsrelaterede brug</li>
+      <li><strong>10 %</strong> af alle beskeder er direkte relateret til undervisning og lektiehjælp</li>
+      <li><strong>Unge under 26 år</strong> står for næsten halvdelen af alle beskeder</li>
+      <li>Beskeder handler oftest om enten at <em>spørge</em> (få råd og viden) eller <em>gøre</em> (få produceret et output)</li>
+    </ul>
+
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="reflection">
+    <h2>🧭 Reflektionsøvelse – kapitel 1</h2>
+    <p class="reflection-goal"><strong>To spørgsmål – to tjek.</strong> Formål: At opleve forskellen på tekstgenerering og fakta, og træne et enkelt faktatjek.</p>
+    <ol>
+      <li><strong>Åbn en chatbot</strong> – gå ind på ChatGPT eller SkoleGPT.</li>
+      <li><strong>Stil to helt enkle spørgsmål:</strong>
+        <ul>
+          <li><strong>A) Tekst (generering):</strong> "Skriv en kort historie på 8–10 linjer med en tydelig start, et problem og en løsning. Sproget skal passe til 5. klasse."</li>
+          <li><strong>B) Fakta (viden):</strong> "Hvad er fotosyntese? Skriv 3 fakta, og nævn hvor du har det fra." (Vælg gerne et andet kendt skoleemne, fx brøker, vikingetiden, grundloven, magnetisme.)</li>
+        </ul>
+      </li>
+      <li><strong>Mini-faktatjek:</strong> Vælg en påstand fra svar B, og tjek den i en sikker kilde (din lærebog, et opslagsværk/en fagportal, eller en officiel side som museum, universitet eller myndighed). Var det korrekt?</li>
+    </ol>
+    <label for="reflection-text" style="font-weight:700; display:block; margin-bottom:6px;">Dine noter (valgfrit – gemmes kun i din browser)</label>
+    <textarea id="reflection-text" placeholder="Skriv fx hvad chatbotten svarede, og om faktatjekket stemte..."></textarea>
+
+    <div class="check-row">
+      <input type="checkbox" id="done-checkbox">
+      <label for="done-checkbox">Jeg har gennemført kapitlets vidensdel og reflektionsøvelsen ovenfor.</label>
+    </div>
+
+    <div class="complete-row">
+      <button class="btn btn-primary" id="complete-btn" type="button" disabled>Marker kapitel 1 som gennemført</button>
+      <span class="saved-note" id="saved-note">✓ Gemt – kapitel 2 er nu låst op</span>
+    </div>
+  </div>
+</section>
+
+<div class="wrap chapter-nav">
+  <a class="btn btn-ghost" href="../index.html">← Til forsiden</a>
+  <a class="btn btn-primary" id="next-link" href="kapitel2.html" aria-disabled="true">Næste: Prompt engineering →</a>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>AI-kørekort for undervisere · <a href="https://pucaabenraa.dk" target="_blank" rel="noopener">PUC Aabenraa</a> · Aabenraa Kommune</div>
+  </div>
+</footer>
+
+<script src="../js/progress.js"></script>
+<script>
+  const CH = 1;
+  AIKorekort.guardChapter(CH);
+  AIKorekort.renderStepper(document.getElementById('stepper'), CH);
+
+  const state = AIKorekort.getState();
+  const textarea = document.getElementById('reflection-text');
+  const checkbox = document.getElementById('done-checkbox');
+  const completeBtn = document.getElementById('complete-btn');
+  const savedNote = document.getElementById('saved-note');
+  const nextLink = document.getElementById('next-link');
+
+  if (state.reflections[CH]) textarea.value = state.reflections[CH];
+  if (AIKorekort.isDone(CH)) {
+    checkbox.checked = true;
+    savedNote.classList.add('show');
+    nextLink.removeAttribute('aria-disabled');
+  }
+
+  function refreshButton() { completeBtn.disabled = !checkbox.checked; }
+  checkbox.addEventListener('change', refreshButton);
+  refreshButton();
+
+  textarea.addEventListener('input', function () {
+    AIKorekort.saveReflectionDraft(CH, textarea.value);
+  });
+
+  completeBtn.addEventListener('click', function () {
+    if (!checkbox.checked) return;
+    AIKorekort.markComplete(CH, textarea.value);
+    savedNote.classList.add('show');
+    nextLink.removeAttribute('aria-disabled');
+  });
+</script>
+</body>
+</html>
