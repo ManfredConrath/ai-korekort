@@ -32,9 +32,24 @@
     }
   }
 
-  function saveState(state) {
+  function saveState(state, opts) {
     state.updatedAt = new Date().toISOString();
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    if (!(opts && opts.silent) && typeof global.__aikorekortOnChange === "function") {
+      global.__aikorekortOnChange(state);
+    }
+  }
+
+  // Replace local state wholesale (used when syncing down from the cloud).
+  // silent:true skips re-triggering the cloud sync hook (avoids write-back loops).
+  function replaceState(newState, opts) {
+    const state = {
+      completed: Array.isArray(newState.completed) ? newState.completed.slice().sort((a, b) => a - b) : [],
+      reflections: newState.reflections || {},
+      updatedAt: newState.updatedAt || null,
+    };
+    saveState(state, opts);
+    return state;
   }
 
   function isDone(n) {
@@ -69,6 +84,9 @@
 
   function resetProgress() {
     localStorage.removeItem(STORAGE_KEY);
+    if (typeof global.__aikorekortOnChange === "function") {
+      global.__aikorekortOnChange(getState());
+    }
   }
 
   /* ---------- Path helpers (works from root or /kapitler/) ---------- */
@@ -173,6 +191,7 @@
     TOTAL_CHAPTERS,
     CHAPTERS,
     getState,
+    replaceState,
     isDone,
     isUnlocked,
     markComplete,
