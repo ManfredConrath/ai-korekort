@@ -507,6 +507,22 @@ a:hover { text-decoration: underline; }
   margin: 6px 0 0;
   clear: both;
 }
+
+/* ---------- Media-left block: image left, text wraps to the right ---------- */
+.media-left-block {
+  overflow: hidden;
+  margin: 20px 0;
+}
+.media-left-block .media-left-figure {
+  float: left;
+  width: 260px;
+  max-width: 42%;
+  margin: 4px 24px 14px 0;
+}
+.media-left-block p:first-of-type { margin-top: 0; }
+@media (max-width: 640px) {
+  .media-left-block .media-left-figure { float: none; width: 100%; max-width: 100%; margin: 0 0 14px; }
+}
 @media (max-width: 640px) {
   .story-box .story-image { float: none; width: 100%; max-width: 100%; margin: 0 0 14px; }
 }
