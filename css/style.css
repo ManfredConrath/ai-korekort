@@ -474,6 +474,43 @@ a:hover { text-decoration: underline; }
   margin-bottom: 6px;
 }
 
+/* ---------- Story box (fx "Eventyret om Ilt, Brint og Vand") ---------- */
+.story-box {
+  background: linear-gradient(135deg, #eaf6f2, #f8fdfc);
+  border: 1px solid #cfe8df;
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  margin: 20px 0;
+  overflow: hidden;
+}
+.story-box .story-image {
+  float: right;
+  width: 300px;
+  max-width: 45%;
+  margin: 0 0 14px 20px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.story-box .story-image img { width: 100%; display: block; }
+.story-box .story-text p { margin: 0 0 12px; }
+.story-box .story-audio {
+  width: 100%;
+  margin: 8px 0 6px;
+  clear: both;
+}
+.story-box .story-credit {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin: 6px 0 0;
+  clear: both;
+}
+@media (max-width: 640px) {
+  .story-box .story-image { float: none; width: 100%; max-width: 100%; margin: 0 0 14px; }
+}
+
 table.compare {
   width: 100%;
   border-collapse: collapse;
