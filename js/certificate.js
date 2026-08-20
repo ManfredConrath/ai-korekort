@@ -26,7 +26,7 @@
     ctx.closePath();
   }
 
-  function draw(canvas, { navn, logoImg }) {
+  function draw(canvas, { navn, logoImg, aabenraaLogoImg }) {
     canvas.width = W;
     canvas.height = H;
     const ctx = canvas.getContext("2d");
@@ -158,50 +158,49 @@
       cx += cw + gap;
     });
 
-    // Footer: date + issuer + signature line
+    // Footer: right column (PUC logo, issue date, signature line, issuer text)
     const footerY = H - 150;
-    ctx.textAlign = "left";
-    ctx.fillStyle = "#1c2733";
-    ctx.font = "600 20px Inter, Arial, sans-serif";
-    ctx.fillText("Udstedt: " + todayDanish(), 130, footerY);
+    const rightX = W - 130;
+    const footerLogoH = 56;
+
+    if (logoImg) {
+      const w = footerLogoH * ((logoImg.naturalWidth || 800) / (logoImg.naturalHeight || 632));
+      ctx.drawImage(logoImg, rightX - w, footerY - 122, w, footerLogoH);
+    }
 
     ctx.textAlign = "right";
-    ctx.font = "700 22px Inter, Arial, sans-serif";
-    ctx.fillStyle = "#06426f";
-    ctx.fillText("PUC Aabenraa", W - 130, footerY - 8);
-    ctx.font = "500 17px Inter, Arial, sans-serif";
     ctx.fillStyle = "#445064";
-    ctx.fillText("Pædagogisk UdviklingsCenter · Aabenraa Kommune", W - 130, footerY + 16);
+    ctx.font = "600 15px Inter, Arial, sans-serif";
+    ctx.fillText("Udstedt: " + todayDanish(), rightX, footerY - 50);
 
     // signature rule
     ctx.strokeStyle = "#d9e3ec";
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(W - 420, footerY - 40);
-    ctx.lineTo(W - 130, footerY - 40);
+    ctx.lineTo(rightX, footerY - 40);
     ctx.stroke();
 
-    // Steering-wheel badge icon bottom-left
-    ctx.save();
-    ctx.translate(160, footerY - 46);
-    ctx.beginPath();
-    ctx.arc(0, 0, 34, 0, Math.PI * 2);
-    ctx.fillStyle = "#096fb7";
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(0, 0, 22, 0, Math.PI * 2);
-    ctx.strokeStyle = "#fff";
-    ctx.lineWidth = 3;
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(-22, 0); ctx.lineTo(22, 0);
-    ctx.moveTo(0, -22); ctx.lineTo(0, -6);
-    ctx.moveTo(-16, 14); ctx.lineTo(-6, 4);
-    ctx.moveTo(16, 14); ctx.lineTo(6, 4);
-    ctx.strokeStyle = "#fff";
-    ctx.lineWidth = 3;
-    ctx.stroke();
-    ctx.restore();
+    ctx.textAlign = "right";
+    ctx.font = "700 22px Inter, Arial, sans-serif";
+    ctx.fillStyle = "#06426f";
+    ctx.fillText("PUC Aabenraa", rightX, footerY - 8);
+    ctx.font = "500 17px Inter, Arial, sans-serif";
+    ctx.fillStyle = "#445064";
+    ctx.fillText("Pædagogisk UdviklingsCenter · Aabenraa Kommune", rightX, footerY + 16);
+
+    // Aabenraa Kommune logo (bottom-left). It's a narrow crest (tall/thin) while the PUC
+    // logo is a wide badge, so matching only the height makes the crest look smaller —
+    // scale it to the same drawn AREA as the PUC logo instead, so both read as "equally big".
+    if (aabenraaLogoImg) {
+      const aabW = aabenraaLogoImg.naturalWidth || 397;
+      const aabH = aabenraaLogoImg.naturalHeight || 487;
+      const pucW = footerLogoH * ((logoImg && logoImg.naturalWidth) || 800) / ((logoImg && logoImg.naturalHeight) || 632);
+      const pucArea = pucW * footerLogoH;
+      const ah = Math.sqrt(pucArea / (aabW / aabH));
+      const aw = ah * (aabW / aabH);
+      ctx.drawImage(aabenraaLogoImg, 160 - aw / 2, (footerY - 46) - ah / 2, aw, ah);
+    }
   }
 
   function loadLogo(src) {
