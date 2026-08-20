@@ -517,6 +517,62 @@ table.compare tr:nth-child(even) td { background: #fafcfe; }
 }
 .timeline .yr { font-weight: 800; color: var(--blue-darker); margin-right: 6px; }
 
+/* ---------- Videnstige (staircase) ---------- */
+.ladder {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin: 24px 0 30px;
+  padding-top: 10px;
+}
+.ladder-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+.ladder-step .bar {
+  width: 100%;
+  height: var(--h, 60px);
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(180deg, var(--blue), var(--blue-darker));
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 8px;
+}
+.ladder-step:nth-child(5) .bar { background: linear-gradient(180deg, var(--green), #6f8f22); }
+.ladder-step .step-num {
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  background: rgba(255,255,255,0.22);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ladder-step .label {
+  margin-top: 8px;
+  font-weight: 800;
+  color: var(--blue-darker);
+  font-size: 0.85rem;
+  text-align: center;
+}
+.ladder-step .sub {
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .ladder-step .label { font-size: 0.72rem; }
+  .ladder-step .sub { font-size: 0.64rem; }
+}
+
 /* ---------- Kapitel-illustrationer ---------- */
 .chapter-image {
   margin: 20px 0;
