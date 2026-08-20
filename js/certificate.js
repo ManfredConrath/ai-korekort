@@ -26,7 +26,7 @@
     ctx.closePath();
   }
 
-  function draw(canvas, { navn, logoImg, aabenraaLogoImg }) {
+  function draw(canvas, { navn, logoImg, aabenraaLogoImg, aabenraaFullLogoImg }) {
     canvas.width = W;
     canvas.height = H;
     const ctx = canvas.getContext("2d");
@@ -57,24 +57,23 @@
       ctx.fill();
     });
 
-    // Logo (top center)
-    const logoSize = 108;
+    // Corner logos: PUC top-left, Aabenraa Kommune (full logo incl. tekst) top-right.
+    // Matched by height so both read as equally prominent; width follows each logo's own aspect ratio.
+    const cornerLogoH = 130;
+    const cornerY = 92;
+    const cornerPad = 90;
+
     if (logoImg) {
-      ctx.save();
-      const lx = W / 2 - logoSize / 2;
-      const ly = 82;
-      ctx.fillStyle = "#ffffff";
-      roundRect(ctx, lx - 8, ly - 8, logoSize + 16, logoSize + 16, 14);
-      ctx.fill();
-      ctx.strokeStyle = "#d9e3ec";
-      ctx.lineWidth = 2;
-      roundRect(ctx, lx - 8, ly - 8, logoSize + 16, logoSize + 16, 14);
-      ctx.stroke();
-      ctx.drawImage(logoImg, lx, ly, logoSize, logoSize);
-      ctx.restore();
+      const w = cornerLogoH * ((logoImg.naturalWidth || 800) / (logoImg.naturalHeight || 632));
+      ctx.drawImage(logoImg, cornerPad, cornerY, w, cornerLogoH);
     }
 
-    let y = 82 + logoSize + 56;
+    if (aabenraaFullLogoImg) {
+      const w = cornerLogoH * ((aabenraaFullLogoImg.naturalWidth || 1600) / (aabenraaFullLogoImg.naturalHeight || 530));
+      ctx.drawImage(aabenraaFullLogoImg, W - cornerPad - w, cornerY, w, cornerLogoH);
+    }
+
+    let y = cornerY + cornerLogoH + 50;
 
     // Kicker
     ctx.textAlign = "center";
