@@ -146,8 +146,10 @@
     const previewWrap = document.getElementById('cert-preview-wrap');
     const navnInput = document.getElementById('navn-input');
     let logoImg = null;
+    let aabenraaLogoImg = null;
 
     AICertificate.loadLogo('assets/puc-logo.jpg').then(function (img) { logoImg = img; });
+    AICertificate.loadLogo('assets/aabenraa-kommune-logo.png').then(function (img) { aabenraaLogoImg = img; });
 
     document.getElementById('generate-btn').addEventListener('click', function () {
       const navn = navnInput.value.trim();
@@ -155,7 +157,7 @@
         alert('Udfyld venligst dit navn, før du genererer certifikatet.');
         return;
       }
-      AICertificate.draw(canvas, { navn: navn, logoImg: logoImg });
+      AICertificate.draw(canvas, { navn: navn, logoImg: logoImg, aabenraaLogoImg: aabenraaLogoImg });
       previewWrap.style.display = 'block';
       previewWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
