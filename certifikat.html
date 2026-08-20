@@ -153,7 +153,7 @@
     AICertificate.loadLogo('assets/aabenraa-kommune-logo.png').then(function (img) { aabenraaLogoImg = img; });
     AICertificate.loadLogo('assets/aabenraa-kommune-logo-full.png').then(function (img) { aabenraaFullLogoImg = img; });
 
-    document.getElementById('generate-btn').addEventListener('click', function () {
+    function generateCertificate() {
       const navn = navnInput.value.trim();
       if (!navn) {
         alert('Udfyld venligst dit navn, før du genererer certifikatet.');
@@ -162,6 +162,16 @@
       AICertificate.draw(canvas, { navn: navn, logoImg: logoImg, aabenraaLogoImg: aabenraaLogoImg, aabenraaFullLogoImg: aabenraaFullLogoImg });
       previewWrap.style.display = 'block';
       previewWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    document.getElementById('generate-btn').addEventListener('click', generateCertificate);
+
+    // Tillad at trykke Enter i navnefeltet i stedet for at klikke på knappen.
+    navnInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        generateCertificate();
+      }
     });
 
     document.getElementById('download-btn').addEventListener('click', function () {
