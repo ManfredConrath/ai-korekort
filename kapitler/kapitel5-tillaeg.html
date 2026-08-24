@@ -127,6 +127,7 @@
 
 <div class="wrap chapter-nav">
   <a class="btn btn-ghost" href="kapitel5.html">← Tilbage til kapitel 5</a>
+  <a class="btn btn-primary" id="next-link" href="kapitel6.html" aria-disabled="true">Næste: Anbefalinger til egen praksis →</a>
 </div>
 
 <footer class="site-footer">
@@ -172,5 +173,11 @@
 <script src="../js/firebase-config.js"></script>
 <script src="../js/progress.js"></script>
 <script src="../js/auth.js"></script>
+<script>
+  if (window.AIKorekort && AIKorekort.isDone(5)) {
+    var nextLink = document.getElementById('next-link');
+    if (nextLink) nextLink.removeAttribute('aria-disabled');
+  }
+</script>
 </body>
 </html>
