@@ -797,6 +797,18 @@ table.compare tr:nth-child(even) td { background: #fafcfe; }
   margin-top: 4px;
 }
 
+.visit-counter {
+  display: none;
+  text-align: center;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  opacity: 0.55;
+  letter-spacing: 0.2px;
+}
+
 /* ---------- Certificate page ---------- */
 .cert-form {
   background: var(--paper);
