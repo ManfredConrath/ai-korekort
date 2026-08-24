@@ -97,6 +97,11 @@
     </div>
     <div><button id="reset-btn" class="btn btn-ghost btn-sm" type="button">Nulstil min fremdrift</button></div>
   </div>
+  <div class="wrap">
+    <div class="visit-counter" id="visit-counter">
+      <span id="visit-count">–</span> besøg på AI-kørekortet
+    </div>
+  </div>
 </footer>
 
 <div id="auth-modal" class="auth-modal-overlay" style="display:none;">
@@ -136,6 +141,7 @@
 <script src="js/firebase-config.js"></script>
 <script src="js/progress.js"></script>
 <script src="js/auth.js"></script>
+<script src="js/visits.js"></script>
 <script>
   function renderAll() {
     AIKorekort.renderIndex({
