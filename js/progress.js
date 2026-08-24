@@ -113,16 +113,30 @@
   }
 
   /* ---------- Stepper UI ---------- */
+  // Renders "Forside" + "Kapitel 1..7" as a row of labeled pills. Forside and any
+  // unlocked chapter are real links (so you can jump straight back to a chapter
+  // you've already done, or to the forside); locked chapters are inert.
   function renderStepper(container, currentN) {
     if (!container) return;
     container.innerHTML = "";
+
+    const home = document.createElement("a");
+    home.className = "step-pill home";
+    home.href = rootPath("index.html");
+    home.textContent = "Forside";
+    container.appendChild(home);
+
     for (let i = 1; i <= TOTAL_CHAPTERS; i++) {
-      const dot = document.createElement("div");
-      dot.className = "step-dot";
-      if (isDone(i)) dot.className += " done";
-      if (i === currentN) dot.className += " current";
-      dot.title = "Kapitel " + i + (isDone(i) ? " (gennemført)" : "");
-      container.appendChild(dot);
+      const done = isDone(i);
+      const current = i === currentN;
+      const unlocked = isUnlocked(i);
+
+      const el = document.createElement(unlocked ? "a" : "span");
+      if (unlocked) el.href = chapterPath(i);
+      el.className = "step-pill" + (current ? " current" : done ? " done" : unlocked ? " open" : " locked");
+      el.textContent = "Kapitel " + i;
+      el.title = "Kapitel " + i + (done ? " (gennemført)" : unlocked ? "" : " (låst)");
+      container.appendChild(el);
     }
   }
 
