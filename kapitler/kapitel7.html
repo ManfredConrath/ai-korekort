@@ -156,6 +156,8 @@
   <a class="btn btn-gold" id="next-link" href="../certifikat.html" aria-disabled="true">🎓 Hent dit AI-kørekort-certifikat →</a>
 </div>
 
+<div class="wrap"><div class="stepper" id="stepper-bottom"></div></div>
+
 <footer class="site-footer">
   <div class="wrap footer-inner">
     <div>AI-kørekort for undervisere · <a href="https://pucaabenraa.dk" target="_blank" rel="noopener">PUC Aabenraa</a> · Aabenraa Kommune</div>
@@ -203,6 +205,7 @@
   const CH = 7;
   AIKorekort.guardChapter(CH);
   AIKorekort.renderStepper(document.getElementById('stepper'), CH);
+  AIKorekort.renderStepper(document.getElementById('stepper-bottom'), CH);
 
   const state = AIKorekort.getState();
   const textarea = document.getElementById('reflection-text');
