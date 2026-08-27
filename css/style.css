@@ -996,3 +996,213 @@ table.compare tr:nth-child(even) td { background: #fafcfe; }
   .progress-summary { flex-direction: column; align-items: stretch; }
   .auth-widget { margin-left: auto; }
 }
+
+/* ============================================================
+   To nye spor: Ledelsesguide og Elevguide
+   ============================================================ */
+
+/* ---------- Hero layout: teacher content + a quiet sidebar to the other tracks ---------- */
+.hero-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.hero-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.hero-side {
+  flex: 0 0 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.hero-side-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  opacity: 0.7;
+  margin-bottom: 2px;
+}
+
+.track-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color .15s ease, background .15s ease;
+}
+.track-card:hover {
+  border-color: var(--blue);
+  background: var(--bg-soft);
+  text-decoration: none;
+}
+.track-card-icon {
+  font-size: 1.05rem;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--bg-soft);
+}
+.track-card-body { flex: 1; min-width: 0; }
+.track-card-title {
+  display: block;
+  font-weight: 700;
+  font-size: 0.84rem;
+  color: var(--blue-darker);
+}
+.track-card-desc {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  margin-top: 1px;
+}
+.track-card-arrow {
+  font-size: 0.9rem;
+  color: var(--border);
+  flex-shrink: 0;
+  transition: transform .15s ease, color .15s ease;
+}
+.track-card:hover .track-card-arrow { transform: translateX(2px); color: var(--blue); }
+
+.track-card-ledelse .track-card-icon { background: #eaf1f8; }
+.track-card-elever .track-card-icon { background: #fdf1e1; }
+
+@media (max-width: 900px) {
+  .hero-layout { flex-direction: column; gap: 20px; }
+  .hero-side { flex-direction: row; flex-wrap: wrap; width: 100%; }
+  .hero-side-label { width: 100%; }
+  .track-card { flex: 1 1 220px; }
+}
+
+/* ---------- Track landing pages (guide-forside) ---------- */
+.track-hero {
+  padding: 44px 0 36px;
+}
+.track-hero .kicker { margin-bottom: 10px; }
+.track-hero h1 { margin: 0 0 14px; }
+.track-hero .lead { margin-bottom: 0; }
+
+.track-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+  padding: 36px 0 60px;
+}
+
+.track-card-page {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow .15s ease, transform .15s ease;
+}
+.track-card-page:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+.track-card-page .chapter-num { background: var(--bg-soft); color: var(--blue-darker); }
+.track-card-page .chapter-title { font-weight: 750; font-size: 1.05rem; color: var(--ink); margin: 0; }
+.track-card-page .chapter-desc { font-size: 0.87rem; color: var(--ink-soft); flex: 1; margin: 0; }
+.track-card-page .chapter-card-link { position: absolute; inset: 0; border-radius: var(--radius); }
+
+/* Elev-sporet: lidt mere legende accentfarve på tallene */
+.track-elever .track-card-page .chapter-num { background: #fdf1e1; color: var(--orange); }
+.track-elever .track-hero h1 { color: var(--orange); }
+.track-elever .kicker { color: var(--blue); }
+
+/* ---------- Sketch-illustration pr. underside ---------- */
+.sketch-figure {
+  display: flex;
+  justify-content: center;
+  margin: 4px 0 26px;
+}
+.sketch-figure img {
+  width: 220px;
+  height: 220px;
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+/* ---------- Note box (Tip / Bemærk / Husk / Til overvejelse) ---------- */
+.note-box {
+  background: var(--bg-soft);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 14px 18px;
+  margin: 18px 0;
+  font-size: 0.94rem;
+  color: var(--ink);
+}
+.note-box .note-label {
+  font-weight: 800;
+  color: var(--blue-darker);
+  margin-right: 4px;
+}
+.note-box p { margin: 0 0 8px; }
+.note-box p:last-child { margin-bottom: 0; }
+.track-elever .note-box { border-left-color: var(--orange); background: #fdf6ea; }
+.track-elever .note-box .note-label { color: var(--orange); }
+
+/* ---------- Kilder-blok pr. underside ---------- */
+.kilder-block {
+  margin: 26px 0 6px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.kilder-block .kilder-heading {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.kilder-block ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.kilder-block li {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: #6b7684;
+  margin-bottom: 8px;
+  padding-left: 14px;
+  text-indent: -14px;
+}
+.kilder-block li a { color: #6b7684; text-decoration: underline; }
+
+/* ---------- Del-note (introtekst til hvert spor) ---------- */
+.part-note {
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  background: var(--bg-soft);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  margin: 16px 0 0;
+}
